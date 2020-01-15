@@ -9,9 +9,8 @@ public interface RobotMap {
 
     //Detail Motor Components
     public interface MotorPorts {
-           
+
     }
-    
     
     //Detail Piston Components
     public interface PistonPorts {
@@ -22,12 +21,16 @@ public interface RobotMap {
     //Detail Analog Components
     public interface AnalogPorts {
         
-        
     }
     
     //Detail Digital components
     public interface DigitalPorts {
         
+        
+    }
+
+    //Declare Encoder
+    public interface EncoderPorts {
         
     }
     

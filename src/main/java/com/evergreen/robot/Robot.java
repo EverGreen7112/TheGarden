@@ -7,8 +7,12 @@
 
 package com.evergreen.robot;
 
+import java.util.List;
+
+import com.evergreen.everlib.CommandEG;
 import com.evergreen.everlib.shuffleboard.loggables.DashboardStreams;
 import com.evergreen.everlib.structure.Tree;
+import com.evergreen.everlib.subsystems.motors.subsystems.DriveTank;
 import com.evergreen.everlib.subsystems.motors.subsystems.MotorSubsystem;
 
 import edu.wpi.first.networktables.NetworkTable;
@@ -30,48 +34,60 @@ import edu.wpi.first.wpilibj2.command.PrintCommand;
  */
 public class Robot extends Tree implements SubsystemComponents {
 
-  // Declare subsystems
   
+  //----------Subsystem Declerations----------
+  //-----Motor Subsystems-----
   // public static final MotorSubsystem subsystemA = new MotorSubsystem(...);
   // public static final MotorSubsystem subsystemB = new MotorSubsystem(...);
-
-  // public static final PistonSubsystem subsystemC = new PistonSubsystem(..);
-
   // public static final DriveTank chassis = new DriveTank(...);
+
+  //-----Piston Subsytem-----
+  // public static final PistonSubsystem subsystemC = new PistonSubsystem(..);
   
+  //-----Joysticks-----
   // public static final F310Gamepad joystickButton = new F310Gamepad(...)
   // public static final ExtremeProJoystick joystickLeft = new Joystick(...)
   // public static final ExtremeProJoystick joystickRight = new Joystick(...)
 
-
+  //-----Network Tables-----
   // public final NetworkTable imageProccesing = NetworkTableInstance.getDefault().getTable("...");
 
-  @Override
-  protected void constantOrganize() {
-    // DashboardConstant.move(...);
-  } 
 
+  @Override
+  protected void componentSetup() {
+    // SubsystemAComponents.motors.setInverted(...);
+  }
+  
+  
+  @Override
+  protected void bindButtons() {
+    // joystickButton.getButton(F310.X).whenPressed(...)
+  }
+  
   @Override
   protected void commandConfig() {
     //subsystem.setDefaultCommand(...);
   }
-
+  
   @Override
   protected void log() {
     // DashboardStreams.addLoggable(...);
     // DashboardStreams.addDouble(...)
   }
-
+  
   @Override
-  protected void initState() {
-    // subsystem configurations...
-
+  protected void whenEnabled() {
+    // SubsystemC.setForward();
   }
 
   @Override
-  protected void autoConfig() {
-    // subsystem configurations for enabled
-
+  protected void test() {
+    //SubsystemA.move(...);
+  }
+  
+  @Override
+  protected void autoConfig() {    
+    // subsystem.setDefaultCommand(...)
   }
 
   @Override
@@ -80,9 +96,15 @@ public class Robot extends Tree implements SubsystemComponents {
   }
 
   @Override
-  protected void bindButtons() {
-    // joystickButton.getButton(F310.X).whenPressed(...)
+  protected List<CommandEG> getAutoCommands() {
+    // return List.of (...);
+    return super.getAutoCommands();
+  }
 
+  @Override
+  protected List<CommandEG> getTeleopCommands() {
+    // return List.of(...);
+    return super.getTeleopCommands();
   }
 
 

@@ -9,7 +9,6 @@ public interface SubsystemComponents extends RobotMap {
      * SubsystemAComponents
      */
     public interface SubsystemAComponents {
-    
         
     }
 
@@ -17,8 +16,7 @@ public interface SubsystemComponents extends RobotMap {
      * SubsystemBComponents
      */
     public interface SubsystemBComponents {
-    
-        
+            
     }
 
 

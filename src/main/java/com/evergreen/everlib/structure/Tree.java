@@ -1,54 +1,73 @@
 package com.evergreen.everlib.structure;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.evergreen.everlib.CommandEG;
 import com.evergreen.everlib.shuffleboard.loggables.DashboardStreams;
 
 import edu.wpi.first.wpilibj.TimedRobot;
-import edu.wpi.first.wpilibj2.command.Command;
 
 /**
  * Tree
  */
 public abstract class Tree extends TimedRobot {
-
-    /**Runs once when the robot is first connected, and whenever
-     * 
-     */
+    
     @Override
     public void robotInit() {
-        constantOrganize();
+        bindButtons();
         commandConfig();
         log();
     }
 
     @Override
     public void autonomousInit() {
-        initState();
-
-        if (getAutoCommand() != null) getAutoCommand().schedule();
+        whenEnabled();
+        autoConfig();
+        for (CommandEG autoCommand : getAutoCommands()) {
+            autoCommand.schedule();
+        }
     }
 
     @Override
     public void teleopInit() {
         teleopConfig();
+
+        for (CommandEG teleopCommand : getTeleopCommands()) {
+            teleopCommand.schedule();
+        }
     }
 
     @Override
     public void robotPeriodic() {
         DashboardStreams.update();
+        update();
     }
 
-    protected abstract void constantOrganize();
+    @Override
+    public void testInit() {
+        whenEnabled();
+        test();
+    }
+
+
+    protected abstract void componentSetup();
+    protected abstract void bindButtons();
     protected abstract void commandConfig();
     protected abstract void log();
-    protected abstract void bindButtons();
 
-    protected abstract void initState();
+    protected abstract void whenEnabled();
 
     protected abstract void autoConfig();
     protected abstract void teleopConfig();
 
 
+    protected abstract void test();
 
-    protected Command getAutoCommand() { return null; }
+
+    protected void update() { }
+
+    protected List<CommandEG> getAutoCommands() { return new ArrayList<>(); }
+    protected List<CommandEG> getTeleopCommands() { return new ArrayList<>(); }
+
 }

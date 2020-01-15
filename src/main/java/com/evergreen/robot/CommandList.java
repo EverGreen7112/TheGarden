@@ -5,5 +5,19 @@ package com.evergreen.robot;
  * this shoulf be seperated into
  */
 public interface CommandList extends SubsystemConstants {
+
+
+    public interface SubsystemACommands {
     
+    }
+
+    public interface SubsystemBCommands {
+    
+        
+    }
+
+    public interface SubsystemCCommands {
+            
+    }
+
 }
